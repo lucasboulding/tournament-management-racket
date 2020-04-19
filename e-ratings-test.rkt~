@@ -1,0 +1,26 @@
+#lang racket
+
+(require rackunit
+         "elo-ratings.rkt")
+
+;; Tests
+;; Players of the same rating should have an equal chance of winning, i.e 0.5
+(check-within
+ (expected-score 1500 1500)
+ 0.5 0.1)
+;; Players with 100 points higher rating are expected to win ~64% of the time
+(check-within
+ (expected-score 1500 1400)
+ 0.64 0.1)
+;; Players with 200 points higher rating are expected to win ~78% of the time
+(check-within
+ (expected-score 1500 1300)
+ 0.75 0.1)
+;; Players with 400 points higher rating are expected to win ~90% of the time
+(check-within
+ (expected-score 1500 1100)
+ 0.9 0.1)
+;; The rating of a player who wins a match should increase
+;; The rating of a player who loses a match should decrease
+;; The rating of a player who wins should be zero-sum with the rating of the
+;; one who loses that match
