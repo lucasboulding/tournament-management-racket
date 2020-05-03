@@ -6,9 +6,10 @@ date: 2020-04-21
 
 # Preamble
 
-This log outlines the thinking behind my code. This form of documentation can prove invaluable for troubleshooting, but it's primary function is to assist in my learning. In some senses it's like a verbose git commit, except that it includes my thinking process as well as actual technical detail. It will include theories about how I think things work, as well as plans, goals, attempts, and failures. 
+This log outlines the thinking behind my code. This form of documentation can prove invaluable for troubleshooting, but it's primary function is to assist in my learning. In some senses it's like a verbose git commit, except that it includes my thinking process as well as actual technical detail. It will include theories about how I think things work, as well as plans, goals, attempts, and failures. Most recent log entry first, and each log entry is written in approximately chronological order as I proceed through a programming session. 
 
 # Log
+
 
 ## 2020-05-03 
 
@@ -29,6 +30,14 @@ Rather than re-invent the wheel, I'm going with csv-reading. I googled it, and u
 
 Using this, I managed to get it to read in multiple lines (using the `next-row` function described in the documentation) and then read in the whole file as a list (using the `csv->list` function). What would be necessary now would be to extract this information from the list to feed it into the Elo rating changes function. 
 
+
+### Later on 1903
+
+I've just been reading over the basics in _Realm of Racket_ and making notes, to try to make sure I've got enough of a handle on the basics. As I made notes on structures, I see that it might be sensible not to make match data a list, but a structure or structure of structures. Not 100% certain how to do that, but could be worth a shot. Each match would then be represented, something like follows:
+
+`(struct match (win-name win-elo los-name los-elo))`
+
+I don't know whether it would then make sense to have the match structures held in another structure, or to be put into a list of structures. 
 
 
 
