@@ -23,17 +23,17 @@ Currently this is not setup for usage by third parties. It is a handful of racke
 
 ## Usage
 
-These scripts assume that you have Racket installed, and they are tested on Ubuntu 16.04. 
+These scripts assume that you have Racket installed, and they were developed on Ubuntu 16.04. They have not been tested in any other environments.
 
 ### elo-ratings.rkt 
 
 This script includes functions that can be used to calculate the updated Elo rating of two players when supplied with their initial Elo ratings and the match outcome. 
 
 
-If the script is run in DrRacket, the functions can be called with appropriate arguments in the interactions buffer. For instance, to update a player's rating, call the function `update-rating` as in the following example `(update-rating 800 0.5 1)` which returns a rating of 816, what we would expect. 
+If the script is run in DrRacket, the functions can be called with appropriate arguments in the interactions buffer. For instance, to update a player's rating, call the function `update-rating` as in the following example `(update-rating 800 0.5 1)` which describes a player with a rating of 800 playing an equally rated player and winning. This returns a rating of 816, what we would expect for the established *k*-factor of 32. If this player had instead lost, their updated rating would return 784.
 
 
-It also includes a second way of creating an Elo rating which considers two additional factors: margin of victory and the autocorrelation problem. These are described by Nate Silver [here](https://fivethirtyeight.com/features/introducing-nfl-elo-ratings/). It is possible that these additional factors may increase the accuracy of Elo ratings for six card cribbage players, but I have not attempted to check that. This is one direction that this project might take in the future.
+This script also includes a second way of creating an Elo rating which considers two additional factors: margin of victory and the autocorrelation problem. These are described by Nate Silver [here](https://fivethirtyeight.com/features/introducing-nfl-elo-ratings/). It is possible that these additional factors may increase the accuracy of Elo ratings for six card cribbage players, but I have not attempted to check that. This is one direction that this project might take in the future.
 
 
 

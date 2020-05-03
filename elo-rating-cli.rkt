@@ -39,7 +39,8 @@
 ; evaluating the ratings changes to a variable that can then be passed to the
 ; output.
 ; N.B. This assumes a game where the outcomes are recorded as victories (1),
-; and losses (0). 
+; and losses (0), and where there cannot be ties (0.5 in conventional
+; notation). 
 (define winner (update-rating (winner-rating) (expected-score (winner-rating) (loser-rating)) 1))
 (define loser (update-rating (loser-rating) (expected-score (loser-rating) (winner-rating)) 0))
 

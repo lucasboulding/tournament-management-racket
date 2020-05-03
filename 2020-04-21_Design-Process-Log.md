@@ -10,6 +10,27 @@ This log outlines the thinking behind my code. This form of documentation can pr
 
 # Log
 
+## 2020-05-03 
+
+I've been working my way through some basic testing with Racket IO, and I still find it counter-intuitive. I've managed to create a basic text file and get Racket to append basic text immediately where the last text left off. I worked my way through the documentation, and I think that `call-with-output-file` is the best fit for my case. It took me several attempts to get this to work — I had problems working out the role of the lambda function, where the "out" variable was coming from, and then getting it to actually save the file. 
+
+
+Then I've managed to open my file of match results in Racket using the symmetrical `call-with-input-file`. Initially I used `read-string` because that was in the example function, but `read-line` makes more sense in this case. So far I can only make it print the first line, which is the header for the CSV file. 
+
+
+I can see that we're skirting on the edge of another big topic here. If I were in this situation in Python, what I would be looking to do is to create a loop to go through every line in the file, but I know that's not how things are supposed to work in more functional languages. I suspect that what I need here is recursion, which, as I understand it at this point, is like a for loop in that it performs some transformation on each item in a list of values until it reaches some end point. I believe that it does this in pairwise fashion, by which I mean instead of processing a whole list it takes the first item on the list and processes, and the function returns a call to itself on the rest of the original list. As yet I do not understand why this is considered to be so brilliant, which is more than likely a classic example of the Dunning-Kruger effect. 
+
+
+I looked at the csv-reading library by Neil Van Dyke, but this adds another layer of Racket complexity — namely, downloading and working with another library. So far, I've only worked with the core libraries. However, I see that the basic approach taken by Van Dyke is to transform the read-in lines into a list (I suspect it's a list of lists, but I'm not sure). 
+
+
+Rather than re-invent the wheel, I'm going with csv-reading. I googled it, and using DrRacket's package manager, and the "do what I mean" tab, I installed csv-reading and its two dependencies, overeasy and mcfly. That appeared to work without a hitch. So I know a bit about CSVs, and I see that this library uses Reader Specs as a way of parsing out the various formats and dialects for CSVs that exist. By default it reads any one or more line-feed and carriage return characters as a new line. It uses `,` as the default separator (I usually prefer to use `;`), and by default it uses `"` as the field delimiter. 
+
+
+Using this, I managed to get it to read in multiple lines (using the `next-row` function described in the documentation) and then read in the whole file as a list (using the `csv->list` function). What would be necessary now would be to extract this information from the list to feed it into the Elo rating changes function. 
+
+
+
 
 ## 2020-04-22 
 
